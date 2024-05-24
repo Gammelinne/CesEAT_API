@@ -8,23 +8,52 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
-
 export default class User extends compose(BaseModel, AuthFinder) {
-  @column({ isPrimary: true })
-  declare id: number
+  @column({ isPrimary: true, columnName: 'id' })
+  declare id: string
 
-  @column()
-  declare fullName: string | null
+  @column({ columnName: 'first_name' })
+  declare firstName: string
 
-  @column()
+  @column({ columnName: 'last_name' })
+  declare lastName: string
+
+  @column({ columnName: 'role' })
+  declare role: string
+
+  @column({ columnName: 'email' })
   declare email: string
 
-  @column({ serializeAs: null })
-  declare password: string
+  @column.dateTime({ columnName: 'email_verified_at' })
+  declare emailVerifiedAt: DateTime | null
 
-  @column.dateTime({ autoCreate: true })
+  @column({ columnName: 'phone' })
+  declare phone: string
+
+  @column({ serializeAs: null, columnName: 'password' })
+  declare password: string
+  /*
+  @column({ columnName: 'address_line1' })
+  declare addressLine1: string
+
+  @column({ columnName: 'address_line2' })
+  declare addressLine2: string | null
+
+  @column({ columnName: 'city' })
+  declare city: string
+
+  @column({ columnName: 'state' })
+  declare state: string
+
+  @column({ columnName: 'postal_code' })
+  declare postalCode: string
+
+  @column({ columnName: 'country' })
+  declare country: string
+  */
+  @column.dateTime({ autoCreate: true, columnName: 'created_at' })
   declare createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true, columnName: 'updated_at' })
+  declare updatedAt: DateTime
 }
