@@ -27,6 +27,7 @@ router
         router.post('/login', [AuthController, 'login'])
         router.post('/reset-password', [AuthController, 'resetPassword'])
         router.post('/logout', [AuthController, 'logout']).use(middleware.auth())
+        router.get('/users', [AuthController, 'view'])
       })
       .prefix('v1')
   })

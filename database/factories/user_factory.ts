@@ -1,6 +1,5 @@
 import factory from '@adonisjs/lucid/factories'
 import User from '#models/user'
-import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
 export const UserFactory = factory
   .define(User, async ({ faker }) => {
@@ -29,7 +28,7 @@ export const UserFactory = factory
       ]),
       emailVerifiedAt: faker.helpers.arrayElement([0, 1]) === 1 ? DateTime.now() : null,
       phone: faker.phone.number(),
-      password: await hash.make('bob'), // Set a default password for all users
+      password: 'bob',
     }
   })
   .build()

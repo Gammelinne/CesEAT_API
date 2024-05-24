@@ -8,11 +8,11 @@ export default class extends BaseSchema {
       table.uuid('id').notNullable().primary().unique()
       table.string('first_name', 64).notNullable()
       table.string('last_name', 64).notNullable()
-      table.string('role', 8).notNullable()
+      table.string('role', 16).notNullable()
       table.string('email', 64).notNullable().unique()
       table.dateTime('email_verified_at').nullable()
       table.string('phone', 32).notNullable().unique()
-      table.string('password', 64).notNullable()
+      table.string('password').notNullable()
       /*
       table.string('address_line1', 255).notNullable()
       table.string('address_line2', 255).nullable()

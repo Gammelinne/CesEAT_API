@@ -7,6 +7,7 @@ export default class AuthController {
   }
   async login({ request, auth }: HttpContext) {
     const { email, password } = request.all()
+    console.log(request.all())
     const user = await User.verifyCredentials(email, password)
     return await auth.use('jwt').generate(user)
   }
@@ -15,5 +16,9 @@ export default class AuthController {
   }
   async logout() {
     console.log('logout')
+  }
+
+  async view() {
+    return User.all()
   }
 }
